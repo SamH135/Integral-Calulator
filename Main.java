@@ -20,7 +20,7 @@ public class Main {
     {
         Scanner scnr = new Scanner(System.in); // gets input from keyboard
 
-        //System.out.print("Enter the file to open: "); // "testFile.txt" in my program - // DELETE
+        System.out.print("Enter the file to open: "); 
         
         // get input file name from user
         String filename = scnr.nextLine(); // read in file name to open
@@ -45,11 +45,7 @@ public class Main {
                 }
                 tree = processData(expression);
                 list = tree.reverseInOrder();
-/*                 for(Node<Term> term: list)
-                {
-                    System.out.println(term.getData().toString());
-                }
-*/
+
                 System.out.println(calcIntegral(list));
                 
 
@@ -100,6 +96,7 @@ public class Main {
     public static String calcIntegral(ArrayList<Node<Term>> list) {
         String exp = "";
         Node<Term> term;
+        
         int expon;
         int coeff;
         int numer;
@@ -107,7 +104,6 @@ public class Main {
         int gcf;
 
         double total = 0.0;
-        //double upperTotal = 0.0;
 
         if(!list.get(0).getData().isDefinite() || list.get(0).getData().isDefinite())     // the terms are indefinite
         {
@@ -117,7 +113,7 @@ public class Main {
 
                 coeff = term.getData().getCoefficient();
                 expon = term.getData().getExponent();
-               // System.out.println("coeff: " + coeff);
+               
 
                 if(!term.getData().isConstant())    // if the term is not a constant, then evaluate variable
                 {
@@ -150,7 +146,7 @@ public class Main {
                             if(denom != 0)
                             {
                                 total += (((double)numer/(double)denom)*(Math.pow((double)upper, expon)) - ((double)numer/(double)denom)*(Math.pow((double)lower, expon)));
-                                //upperTotal = ((double)numer/(double)denom)*(Math.pow((double)upper, expon));
+                             
                             }
                             else 
                             {
@@ -165,7 +161,7 @@ public class Main {
                                 if(denom != 0)
                                 {
                                     total += (((double)numer/(double)denom)*upper - ((double)numer/(double)denom)*lower);
-                                    //upperTotal = ((double)numer/(double)denom)*upper;
+                                    
                                 }
                                 else 
                                 {
@@ -175,7 +171,7 @@ public class Main {
                             else
                             {
                                 total += (((double)numer)*upper - ((double)numer)*lower);
-                                //upperTotal = ((double)numer)*upper;
+                               
                             }
                             
                         }
@@ -202,7 +198,7 @@ public class Main {
                                 }
                                 else if(denom == -1)
                                 {
-                                    //System.out.println("negative -1 denom");
+                                    
                                     exp +=  numer + "x^" + expon;
                                 }
                                 
@@ -236,7 +232,7 @@ public class Main {
                                 }
                                 else if(denom == 1)
                                 {
-                                    //System.out.println("negative -1 denom");
+                                    
                                     exp += " - " + (numer*-1) + "x^" + expon;
                                 }
                                 
@@ -263,7 +259,7 @@ public class Main {
                             }
                             else
                             {
-                               // System.out.println("1 negative -1 denom");
+                               
                                 exp +=  " - " + (numer * -1) + "x^" + expon;
                             }
                             
@@ -354,7 +350,7 @@ public class Main {
                     }
                     
 
-                    //System.out.println("upper total: " + upperTotal);
+                    
                     if(x != 0)
                     {
                         if(coeff > 0) // prepend plus sign before positive, trailing constants
@@ -505,9 +501,7 @@ public class Main {
         replaced = parseSpace.replace("--", "+");   // replace double negatives with a postive "--" -> "+"
         replaced = replaced.replace("-", "+-");   // replace "-" with "+-" so that expression can be split and terms can retain their negative values
        
-        //System.out.println("replaced: " + replaced);
-
-
+        
         y = replaced.split("\\+");      // split the expression into terms
 
         for(int a=0; a<y.length; a++)
@@ -613,8 +607,6 @@ public class Main {
                 {
                     coefficient = 0;
                 }
-                
-//System.out.println("constant: " + coefficient);
 
                 Term obj = new Term(coefficient, exponent, definite, constant);
                 termList.add(obj);
@@ -623,8 +615,7 @@ public class Main {
             //System.out.println(" ");
         }
 
-        //System.out.println(termList.toString());
-
+  
         // combine like terms in arrayList of terms
         for(int c = 0; c<termList.size(); c++)
         {
